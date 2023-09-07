@@ -2,6 +2,7 @@ import inquirer
 import sys
 from prompts import Prompts
 from people import People
+import time
 
 pt = Prompts()
 
@@ -20,7 +21,11 @@ def GameSelection():
         answer = inquirer.prompt(pt.chooseGamePrompt[1])
         if answer[pt.chooseGamePrompt[0]] == "People (Longevity, Capacity and Speed)":
             people = People()
-            people.Game()
+            try:
+                people.Game()
+            except Exception as e:
+                print(e)
+                time.sleep(20)
         if answer[pt.chooseGamePrompt[0]] == "Back":
             return 1
         else:
